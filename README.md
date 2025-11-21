@@ -4,7 +4,7 @@ Ultra Fast Random Number Generator for 8, 16, and 32-Bit Devices
 
 From a post [Ultra Fast Pseudorandom number generator for 8-bit](https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/) by _EternityForest_ (Dec 31, 2011) with additional edits by [jeblad](mailto:jeblad@gmail.com) (Nov 20, 2025).
 
-This is a small PRNG, experimentally verified to have at least a 50 million byte period for 8 bits by generating 50 million bytes and observing that there were no overlapping sequences and repeats. It passes serial correlation, entropy, Monte Carlo Pi value, arithmetic mean, and many other statistical tests. It may have a period of up to 2³², but this has not been verified.
+This is a small [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) (PRNG), experimentally verified to have at least a 50 million byte period for 8 bits by generating 50 million bytes and observing that there were no overlapping sequences and repeats. It passes serial correlation, entropy, Monte Carlo Pi value, arithmetic mean, and many other statistical tests. It may have a period of up to 2³², but this has not been verified.
 
 In this specific implementation the values for the state variables are bound during instantiation of the template, thus making it possible to create repeatable sequences.
 
