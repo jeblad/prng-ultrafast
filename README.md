@@ -16,13 +16,24 @@ Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and gener
 
 ## Usage
 
-The library is in a single header file. Simply grab the file and put it wherever it is needed.
+The _prng-ultrafast_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
 
 ```bash
-wget 
+//
+wget https://raw.githubusercontent.com/jeblad/prng-ultrafast/refs/heads/main/prng-ultrafast.hpp
 ```
 
-The most common use is to set it up to generate a byte sized random value
+or
+
+```bash
+git submodule add git@github.com:jeblad/prng-ultrafast.git path-to-submodule
+```
+
+The _path-to-submodule_ would typically be something like `include/prng-ultrafast` if you're in the project folder.
+
+If you're adding the _prng-ultrafast_ as a submodule, then pull an updated version.
+
+The most common use is to set the library up to generate a byte sized random value
 
 ```C++
 #include "prng.hpp"
@@ -54,11 +65,22 @@ rand.draw();
 
 The testing library [doctest](https://github.com/doctest/doctest) is used during development, but it isn't part of the library as such. It is although necessary for running the tests. Likewise the implementation in `prng-test.cpp` isn't necessary for non-development use, it is used for the tests only.
 
+The _doctest_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
+
 ```bash
-…
+//
+wget [https://raw.githubusercontent.com/jeblad/prng-ultrafast/refs/heads/main/prng-ultrafast.hpp](https://raw.githubusercontent.com/doctest/doctest/refs/heads/master/doctest/doctest.h)
 ```
 
-Then pull an updated version of doctest…
+or
+
+```bash
+git submodule add git@github.com:doctest/doctest.git path-to-submodule
+```
+
+The _path-to-submodule_ would typically be something like `include/doctest` if you're in the project folder.
+
+If you're adding the doctest as a submodule, then pull an updated version.
 
 The usual development cycle is to compile the test file, and then run it
 
@@ -67,6 +89,4 @@ g++ -Wall -Wextra -Werror -std=c++20 -I ./include/ -o prng-ultrafast src/prng-ul
 ./prng-ultrafast
 ```
 
-The executable can take several arguments. Check the manual for doctest for examples.
-
-…
+The executable can take several arguments. Check the manual for examples.
