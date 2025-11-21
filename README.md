@@ -78,13 +78,19 @@ git submodule add git@github.com:doctest/doctest.git path-to-submodule
 
 The _path-to-submodule_ would typically be something like `include/doctest` if you're in the project folder.
 
-If you're adding the doctest as a submodule, then pull an updated version.
+If you're adding the _doctest_ as a submodule, then pull an updated version.
 
 The usual development cycle is to compile the test file, and then run it
 
 ```bash
 g++ -Wall -Wextra -Werror -std=c++20 -I ./include/ -o prng-ultrafast src/prng-ultrafast-test.cpp
+```
+
+Then run the executable `prng-ultrafast` that has the actual tests.
+
+```bash
+
 ./prng-ultrafast
 ```
 
-The executable can take several arguments. Check the manual for examples.
+The executable can take several arguments. Check the _doctest_ manual for examples.
