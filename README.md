@@ -69,7 +69,7 @@ The _doctest_ library is in a single header file. Simply grab the file and put i
 
 ```bash
 //
-wget [https://raw.githubusercontent.com/jeblad/prng-ultrafast/refs/heads/main/prng-ultrafast.hpp](https://raw.githubusercontent.com/doctest/doctest/refs/heads/master/doctest/doctest.h)
+wget https://raw.githubusercontent.com/doctest/doctest/refs/heads/master/doctest/doctest.h
 ```
 
 or
