@@ -19,7 +19,6 @@ Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and gener
 The _prng-ultrafast_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
 
 ```bash
-//
 wget https://raw.githubusercontent.com/jeblad/prng-ultrafast/refs/heads/main/prng-ultrafast.hpp
 ```
 
@@ -68,7 +67,6 @@ The testing library [doctest](https://github.com/doctest/doctest) is used during
 The _doctest_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
 
 ```bash
-//
 wget https://raw.githubusercontent.com/doctest/doctest/refs/heads/master/doctest/doctest.h
 ```
 
