@@ -1,2 +1,72 @@
 # prng-ultrafast
+
 Ultra Fast Random Number Generator for 8, 16, and 32-Bit Devices
+
+From a post [Ultra Fast Pseudorandom number generator for 8-bit](https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/) by _EternityForest_ (Dec 31, 2011) with additional edits by [jeblad](mailto:jeblad@gmail.com) (Nov 20, 2025).
+
+This is a small PRNG, experimentally verified to have at least a 50 million byte period for 8 bits by generating 50 million bytes and observing that there were no overlapping sequences and repeats. It passes serial correlation, entropy, Monte Carlo Pi value, arithmetic mean, and many other statistical tests. It may have a period of up to 2³², but this has not been verified.
+
+In this specific implementation the values for the state variables are bound during instantiation of the template, thus making it possible to create repeatable sequences.
+
+This generator is not suitable for cryptography due to its short period (by cryptographic standards) and simple construction. No attempt has been made to make this generator suitable for cryptographic use.
+
+Due to the use of a constant counter, the generator should be resistant to latching up. A significant performance gain is had in that the x variable is only ever incremented.
+
+Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like multiply, etc were avoided for maximum speed on ultra low power devices.
+
+## Usage
+
+The library is in a single header file. Simply grab the file and put it wherever it is needed.
+
+```bash
+wget 
+```
+
+The most common use is to set it up to generate a byte sized random value
+
+```C++
+#include "prng.hpp"
+prng::UltraFast<uint8_t> rand{};
+rand.draw();
+```
+
+It might start with explicitly set state when instantiated
+
+```C++
+#include "prng.hpp"
+prng::UltraFast<uint8_t, 239U, 241U, 251U> rand{};
+rand.draw();
+```
+
+Note that it must be instantiated with different state values to generate unique sequences.
+
+Or it can be given an initial seed, a new seed, or a complete state
+
+```C++
+#include "prng-ultrafast.hpp"
+prng::UltraFast<uint8_t> rand{};
+rand.draw();
+rand.seed(42, 251U, 239U, 241U);
+rand.draw();
+```
+
+## Development
+
+The testing library [doctest](https://github.com/doctest/doctest) is used during development, but it isn't part of the library as such. It is although necessary for running the tests. Likewise the implementation in `prng-test.cpp` isn't necessary for non-development use, it is used for the tests only.
+
+```bash
+…
+```
+
+Then pull an updated version of doctest…
+
+The usual development cycle is to compile the test file, and then run it
+
+```bash
+g++ -Wall -Wextra -Werror -std=c++20 -I ./include/ -o prng-ultrafast src/prng-ultrafast-test.cpp
+./prng-ultrafast
+```
+
+The executable can take several arguments. Check the manual for doctest for examples.
+
+…
