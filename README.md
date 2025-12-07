@@ -12,7 +12,7 @@ This generator is not suitable for cryptography due to its short period (by cryp
 
 Due to the use of a constant counter, the generator should be resistant to latching up. A significant performance gain is had in that the x variable is only ever incremented.
 
-Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like multiply, etc were avoided for maximum speed on ultra low power devices.
+Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like multiply, etc., were avoided for maximum speed on ultra low power devices.
 
 ## Usage
 
@@ -62,7 +62,7 @@ rand.draw();
 
 ## Development
 
-The testing library [doctest](https://github.com/doctest/doctest) is used during development, but it isn't part of the library as such. It is although necessary for running the tests. Likewise the implementation in `prng-ultrafast-test.cpp` isn't necessary for non-development use, it is used for the tests only.
+The testing library [doctest](https://github.com/doctest/doctest) is used during development, but it isn't part of the library as such. It is although necessary for running the tests. Likewise, the implementation in `prng-ultrafast-test.cpp` isn't necessary for non-development use, it is used for the tests only.
 
 The _doctest_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
 
