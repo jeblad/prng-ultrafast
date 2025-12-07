@@ -19,7 +19,7 @@ Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and gener
 The _prng-ultrafast_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
 
 ```bash
-wget https://raw.githubusercontent.com/jeblad/prng-ultrafast/refs/heads/main/prng-ultrafast.hpp
+wget https://raw.githubusercontent.com/jeblad/prng-ultrafast/refs/heads/main/prng-ultrafast.h
 ```
 
 or
@@ -35,7 +35,7 @@ If you're adding the _prng-ultrafast_ as a submodule, then pull an updated versi
 The most common use is to set the library up to generate a byte sized random value
 
 ```C++
-#include "prng.hpp"
+#include "prng-ultrafast.h"
 prng::UltraFast<uint8_t> rand{};
 rand.draw();
 ```
@@ -43,7 +43,7 @@ rand.draw();
 It might start with explicitly set state when instantiated
 
 ```C++
-#include "prng.hpp"
+#include "prng-ultrafast.h"
 prng::UltraFast<uint8_t, 239U, 241U, 251U> rand{};
 rand.draw();
 ```
@@ -53,7 +53,7 @@ Note that it must be instantiated with different state values to generate unique
 Or it can be given an initial seed, a new seed, or a complete state
 
 ```C++
-#include "prng-ultrafast.hpp"
+#include "prng-ultrafast.h"
 prng::UltraFast<uint8_t> rand{};
 rand.draw();
 rand.seed(42, 251U, 239U, 241U);
@@ -62,7 +62,7 @@ rand.draw();
 
 ## Development
 
-The testing library [doctest](https://github.com/doctest/doctest) is used during development, but it isn't part of the library as such. It is although necessary for running the tests. Likewise the implementation in `prng-test.cpp` isn't necessary for non-development use, it is used for the tests only.
+The testing library [doctest](https://github.com/doctest/doctest) is used during development, but it isn't part of the library as such. It is although necessary for running the tests. Likewise the implementation in `prng-ultrafast-test.cpp` isn't necessary for non-development use, it is used for the tests only.
 
 The _doctest_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
 
@@ -83,14 +83,14 @@ If you're adding the _doctest_ as a submodule, then pull an updated version.
 The usual development cycle is to compile the test file, and then run it
 
 ```bash
-g++ -Wall -Wextra -Werror -std=c++20 -I ./include/ -o prng-ultrafast src/prng-ultrafast-test.cpp
+g++ -Wall -Wextra -Werror -std=c++20 -I ./include/ -I ./src/ -o prng-ultrafast-test test/prng-ultrafast-test.cpp
 ```
 
-Then run the executable `prng-ultrafast` that has the actual tests.
+Then run the executable `prng-ultrafast-test` that has the actual tests.
 
 ```bash
 
-./prng-ultrafast
+./prng-ultrafast-test
 ```
 
 The executable can take several arguments. Check the _doctest_ manual for examples.

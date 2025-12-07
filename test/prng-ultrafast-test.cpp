@@ -2,7 +2,7 @@
   Testing Procedures for Ultra Fast Random Number Generator
 */
 
-#include "prng-ultrafast.hpp"
+#include "prng-ultrafast.h"
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
