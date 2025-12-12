@@ -31,9 +31,9 @@
 namespace prng{
 
     template<std::unsigned_integral T,
-            std::unsigned_integral auto v1=4294967291U, // prime less than largest UInt32 value
-            std::unsigned_integral auto v2=3999999919U, // prime
-            std::unsigned_integral auto v3=4100000231U> // prime
+            std::unsigned_integral auto v1=static_cast<T>(4294967291U), // prime less than largest UInt32 value
+            std::unsigned_integral auto v2=static_cast<T>(3999999919U), // prime
+            std::unsigned_integral auto v3=static_cast<T>(4100000231U)> // prime
     class UltraFast {
         private:
         T x{0}, a{static_cast<T>(v3)}, b{static_cast<T>(v2)}, c{static_cast<T>(v1)};
@@ -47,10 +47,17 @@ namespace prng{
             x = seed;
         }
 
+        UltraFast(unsigned long long seed) {
+            x = static_cast<T>(seed);
+            a = static_cast<T>(seed % v3);
+            b = static_cast<T>(seed % v2);
+            c = static_cast<T>(seed % v1);
+        }
+
         void seed(T seed,
-                std::optional<unsigned int> p1 = std::nullopt,
-                std::optional<unsigned int> p2 = std::nullopt,
-                std::optional<unsigned int> p3 = std::nullopt)
+                std::optional<T> p1 = std::nullopt,
+                std::optional<T> p2 = std::nullopt,
+                std::optional<T> p3 = std::nullopt)
         {
             x = seed;
             if ( p3.has_value()) {
@@ -64,9 +71,9 @@ namespace prng{
             }
         }
 
-        void addEntropy(std::optional<unsigned int> p1 = std::nullopt,
-                std::optional<unsigned int> p2 = std::nullopt,
-                std::optional<unsigned int> p3 = std::nullopt)
+        void addEntropy(std::optional<T> p1 = std::nullopt,
+                std::optional<T> p2 = std::nullopt,
+                std::optional<T> p3 = std::nullopt)
         {
             if ( p3.has_value()) {
                 a ^= static_cast<T>(p3.value());
