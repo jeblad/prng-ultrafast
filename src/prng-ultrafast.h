@@ -29,7 +29,6 @@
 #pragma once
 
 #include <concepts>
-#include <optional>
 
 namespace prng{
 
