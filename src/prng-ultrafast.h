@@ -8,8 +8,8 @@
   This is a small PRNG, experimentally verified to have at least a 50 million byte period for 8 bits
   by generating 50 million bytes and observing that there were no overlapping sequences and repeats.
   This generator passes serial correlation, entropy, Monte Carlo Pi value, arithmetic mean,
-  And many other statistical tests. This generator may have a period of up to 2^32, but this has
-  not been verified.
+  And many other statistical tests. This generator may have a period of up to 2^32 with 8 bits, but
+  this has not been verified.
 
   This generator is not suitable for cryptography due to its short period (by  cryptographic standards)
   and simple construction. No attempt was made to make this generator suitable for cryptographic use.
@@ -20,6 +20,9 @@
   Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result
   requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like
   multiply, etc were avoided for maximum speed on ultra low power devices.
+
+  It is most useful when you need a pseudo random sequence that can be repeated for subsequent runs,
+  and when the rather limited period is not an issue.
 
 */
 
@@ -42,48 +45,23 @@ namespace prng{
 
         UltraFast() {}
 
-        UltraFast(T seed)
-        {
-            x = seed;
+        UltraFast(unsigned long long val) {
+            seed(val);
         }
 
-        UltraFast(unsigned long long seed) {
-            x = static_cast<T>(seed);
-            a = static_cast<T>(seed % v3);
-            b = static_cast<T>(seed % v2);
-            c = static_cast<T>(seed % v1);
+        void seed(unsigned long long val)
+        {
+            x = 0;
+            a = static_cast<T>(val % v3);
+            b = static_cast<T>(val % v2);
+            c = static_cast<T>(val % v1);
         }
 
-        void seed(T seed,
-                std::optional<T> p1 = std::nullopt,
-                std::optional<T> p2 = std::nullopt,
-                std::optional<T> p3 = std::nullopt)
+        void addEntropy(unsigned long long val)
         {
-            x = seed;
-            if ( p3.has_value()) {
-                a = static_cast<T>(p3.value());
-            }
-            if ( p2.has_value()) {
-                b = static_cast<T>(p2.value());
-            }
-            if ( p1.has_value()) {
-                c = static_cast<T>(p1.value());
-            }
-        }
-
-        void addEntropy(std::optional<T> p1 = std::nullopt,
-                std::optional<T> p2 = std::nullopt,
-                std::optional<T> p3 = std::nullopt)
-        {
-            if ( p3.has_value()) {
-                a ^= static_cast<T>(p3.value());
-            }
-            if ( p2.has_value()) {
-                b ^= static_cast<T>(p2.value());
-            }
-            if ( p1.has_value()) {
-                c ^= static_cast<T>(p1.value());
-            }
+            a ^= static_cast<T>(val % v3);
+            b ^= static_cast<T>(val % v2);
+            c ^= static_cast<T>(val % v1);
         }
 
         T draw()
