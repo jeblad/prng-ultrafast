@@ -1,28 +1,37 @@
 /*
 
-  Ultra Fast Random Number Generator for 8, 16, and 32-Bit Devices
+    Ultra Fast Random Number Generator for 8, 16, and 32-Bit Devices
 
-  From https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/
-  With additional edits by jeblad@gmail.com
+    From https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/
+    With additional edits by jeblad@gmail.com
 
-  This is a small PRNG, experimentally verified to have at least a 50 million byte period for 8 bits
-  by generating 50 million bytes and observing that there were no overlapping sequences and repeats.
-  This generator passes serial correlation, entropy, Monte Carlo Pi value, arithmetic mean,
-  And many other statistical tests. This generator may have a period of up to 2^32 with 8 bits, but
-  this has not been verified.
+    This is a small PRNG, experimentally verified to have at least a 50 million byte period for 8 bits
+    by generating 50 million bytes and observing that there were no overlapping sequences and repeats.
+    This generator passes serial correlation, entropy, Monte Carlo Pi value, arithmetic mean,
+    And many other statistical tests. This generator may have a period of up to 2^32 with 8 bits, but
+    this has not been verified.
 
-  This generator is not suitable for cryptography due to its short period (by  cryptographic standards)
-  and simple construction. No attempt was made to make this generator suitable for cryptographic use.
+    This generator is not suitable for cryptography due to its short period (by  cryptographic standards)
+    and simple construction. No attempt was made to make this generator suitable for cryptographic use.
 
-  Due to the use of a constant counter, the generator should be resistant to latching up.
-  A significant performance gain is had in that the x variable is only ever incremented.
+    Due to the use of a constant counter, the generator should be resistant to latching up.
+    A significant performance gain is had in that the x variable is only ever incremented.
 
-  Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result
-  requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like
-  multiply, etc were avoided for maximum speed on ultra low power devices.
+    Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result
+    requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like
+    multiply, etc were avoided for maximum speed on ultra low power devices.
 
-  It is most useful when you need a pseudo random sequence that can be repeated for subsequent runs,
-  and when the rather limited period is not an issue.
+    It is most useful when you need a pseudo random sequence that can be repeated for subsequent runs,
+    and when the rather limited period is not an issue.
+
+    Copyright (c) 2025 John Erling Blad <jeblad@gmail.com> with additional (c) as appropriate.
+
+    Distributed under the GNU General Public License v3.
+    See accompanying file LICENSE or the page at
+    https://www.gnu.org/licenses/
+
+    The documentation can be found at the library's page:
+    https://github.com/jeblad/hash-fnv1a/blob/main/README.md
 
 */
 
