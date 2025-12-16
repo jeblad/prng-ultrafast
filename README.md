@@ -1,5 +1,10 @@
 # prng-ultrafast
 
+![stability-unstable](https://img.shields.io/badge/stability-experimental-orange.svg?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/jeblad/prng-ultrafast?style=for-the-badge)
+
+## Scope
+
 Ultra Fast Random Number Generator for 8, 16, and 32-Bit Devices
 
 From a post [Ultra Fast Pseudorandom number generator for 8-bit](https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/) by _EternityForest_ (Dec 31, 2011) with additional edits by [jeblad](mailto:jeblad@gmail.com) (Nov 20, 2025).
