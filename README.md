@@ -43,24 +43,18 @@ The most common use is to set the library up to generate a byte sized random val
 #include "prng-ultrafast.h"
 // initialized with default state values
 prng::UltraFast<uint8_t> rand{};
-// initialized with explicit state values
-prng::UltraFast<uint8_t, 239U, 241U, 251U> rand{};
-// initialized with additional entropy
-prng::UltraFast<uint32_t> rand{1234567};
-// set new seed
-rand.seed(1234567);
-// add entropy
-rand.addEntropy(1234567);
 // draw a new pseudo random value
-int8_t result = rand.draw();
+uint8_t result = rand.draw();
 ```
 
 It might start with explicitly set state when instantiated
 
 ```C++
 #include "prng-ultrafast.h"
+// initialized with explicit state values
 prng::UltraFast<uint8_t, 239U, 241U, 251U> rand{};
-rand.draw();
+// draw a new pseudo random value
+uint8_t result = rand.draw();
 ```
 
 Note that it must be instantiated with different state values to generate unique sequences.
@@ -69,10 +63,39 @@ Or it can be given an initial seed, a new seed, or a complete state
 
 ```C++
 #include "prng-ultrafast.h"
+// initialized with default state values
 prng::UltraFast<uint8_t> rand{};
+// make a draw
 rand.draw();
+// set new seed
 rand.seed(42, 251U, 239U, 241U);
+// draw a new pseudo random value
+uint8_t result = rand.draw();
+```
+
+It is also possible to add more entropy during initialization
+
+```C++
+#include "prng-ultrafast.h"
+// initialized with additional entropy
+prng::UltraFast<uint32_t> rand{1234567};
+// draw a new pseudo random value
+uint8_t result = rand.draw();
+```
+
+And it is possible to add more entropy during use
+
+
+```C++
+#include "prng-ultrafast.h"
+// initialized with default state values
+prng::UltraFast<uint8_t> rand{};
+// make a draw
 rand.draw();
+// add entropy
+rand.addEntropy(1234567);
+// draw a new pseudo random value
+uint8_t result = rand.draw();
 ```
 
 ## Development
