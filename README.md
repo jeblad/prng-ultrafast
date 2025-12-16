@@ -41,8 +41,18 @@ The most common use is to set the library up to generate a byte sized random val
 
 ```C++
 #include "prng-ultrafast.h"
+// initialized with default state values
 prng::UltraFast<uint8_t> rand{};
-rand.draw();
+// initialized with explicit state values
+prng::UltraFast<uint8_t, 239U, 241U, 251U> rand{};
+// initialized with additional entropy
+prng::UltraFast<uint32_t> rand{1234567};
+// set new seed
+rand.seed(1234567);
+// add entropy
+rand.addEntropy(1234567);
+// draw a new pseudo random value
+int8_t result = rand.draw();
 ```
 
 It might start with explicitly set state when instantiated
