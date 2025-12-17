@@ -85,7 +85,6 @@ uint8_t result = rand.draw();
 
 And it is possible to add more entropy during use
 
-
 ```C++
 #include "prng-ultrafast.h"
 // initialized with default state values
