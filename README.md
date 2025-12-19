@@ -13,7 +13,7 @@ This is a small [pseudorandom number generator](https://en.wikipedia.org/wiki/Ps
 
 In this specific implementation the values for the state variables are bound during instantiation of the template, thus making it possible to create repeatable sequences.
 
-This generator is not suitable for cryptography due to its short period (by cryptographic standards) and simple construction. No attempt has been made to make this generator suitable for cryptographic use.
+**This generator is not suitable for cryptography due to its short period (by cryptographic standards) and simple construction. No attempt has been made to make this generator suitable for cryptographic use.**
 
 Due to the use of a constant counter, the generator should be resistant to latching up. A significant performance gain is had in that the x variable is only ever incremented.
 
