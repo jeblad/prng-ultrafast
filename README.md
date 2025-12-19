@@ -19,6 +19,8 @@ Due to the use of a constant counter, the generator should be resistant to latch
 
 Only 4 bytes of ram (in 8 bit mode) are needed for the internal state, and generating a result requires 3 XORs, 2 ADDs, one bit shift right, and one increment. Difficult or slow operations like multiply, etc., were avoided for maximum speed on ultra low power devices.
 
+It is most useful when you need a pseudo random sequence that can be repeated for subsequent runs, and when the rather limited period is not an issue.
+
 ## Usage
 
 The _prng-ultrafast_ library is in a single header file. Simply grab the file and put it wherever it is needed, or pull the repo as a submodule.
